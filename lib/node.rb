@@ -21,18 +21,12 @@ class Node
     self.value <=> other.value
   end
 
+  def to_s 
+    self.inspect
+  end
+
   def inspect 
-    str = "#{value}"
-
-    unless left.nil?
-      str << ", #{left.inspect}"
-    end
-
-    unless right.nil?
-      str << ", #{right.inspect}"
-    end
-
-    "(" + str + ")"
+    "(#{value}, #{left}, #{right})"
   end
 
 end

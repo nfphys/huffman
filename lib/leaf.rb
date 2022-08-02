@@ -12,6 +12,10 @@ class Leaf < Node
     @right = nil
   end
 
+  def to_s
+    self.inspect
+  end
+
   def inspect 
     "(#{char}, #{value})"
   end
