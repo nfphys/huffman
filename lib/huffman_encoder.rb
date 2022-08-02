@@ -2,6 +2,7 @@ require_relative 'node'
 require_relative 'leaf'
 
 class HuffmanEncoder 
+  
   # ハフマン符合化を行う文字列
   attr_reader :message 
 

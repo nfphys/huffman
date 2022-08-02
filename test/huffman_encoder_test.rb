@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-require_relative '../lib/huffman'
+require_relative '../lib/huffman_encoder'
 
 class HuffmanEncoderTest < Minitest::Test 
   def test_compaire_nodes
@@ -29,11 +29,10 @@ class HuffmanEncoderTest < Minitest::Test
 
   def test_collect_frequencies 
     expected = {'a'=>2, 'b'=>3, 'd'=>5}
-    assert_equal expected, HuffmanEncoder.new('aabbbddddd').send(:collect_frequencies)
+    assert_equal expected, HuffmanEncoder.new('aabbbddddd').send(:collect_frequencies, 'aabbbddddd')
 
     expected = {'x'=>1, 'y'=>4, 'z'=>2}
-    assert_equal expected, HuffmanEncoder.new('xyyyyzz').send(:collect_frequencies)
+    assert_equal expected, HuffmanEncoder.new('xyyyyzz').send(:collect_frequencies, 'xyyyyzz')
   end
-
 
 end
