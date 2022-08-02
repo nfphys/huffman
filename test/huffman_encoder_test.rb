@@ -29,10 +29,28 @@ class HuffmanEncoderTest < Minitest::Test
 
   def test_collect_frequencies 
     expected = {'a'=>2, 'b'=>3, 'd'=>5}
-    assert_equal expected, HuffmanEncoder.new('aabbbddddd').send(:collect_frequencies, 'aabbbddddd')
+    assert_equal expected, HuffmanEncoder.new('aabbbddddd').frequencies
 
     expected = {'x'=>1, 'y'=>4, 'z'=>2}
-    assert_equal expected, HuffmanEncoder.new('xyyyyzz').send(:collect_frequencies, 'xyyyyzz')
+    assert_equal expected, HuffmanEncoder.new('xyyyyzz').frequencies
+  end
+
+  def test_make_tree 
+    assert_equal "(10, (5, (a, 2), (b, 3)), (d, 5))", HuffmanEncoder.new('aabbbddddd').root.to_s 
+    assert_equal "(7, (3, (x, 1), (z, 2)), (y, 4))", HuffmanEncoder.new('xyyyyzz').root.to_s
+  end
+
+  def test_collect_binary_values 
+    expected = {'a'=>'00', 'b'=>'01', 'd'=>'1'}
+    assert_equal expected, HuffmanEncoder.new('aabbbddddd').binary_values
+
+    expected = {'x'=>'00', 'y'=>'1', 'z'=>'01'}
+    assert_equal expected, HuffmanEncoder.new('xyyyyzz').binary_values
+  end
+
+  def test_generate_encoded_string 
+    assert_equal '000001010111111', HuffmanEncoder.new('aabbbddddd').encoded_string
+    assert_equal '0011110101', HuffmanEncoder.new('xyyyyzz').encoded_string 
   end
 
 end
