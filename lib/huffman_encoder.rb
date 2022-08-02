@@ -55,13 +55,13 @@ class HuffmanEncoder
       right = nodes.shift
       total_value = left.value + right.value 
 
-      nodes << Node.new(value: total_value, left: left, right: right)
+      nodes.unshift Node.new(value: total_value, left: left, right: right)
       nodes.sort!
 
       p nodes if self.debug
     end
 
-    root = nodes.first 
+    nodes.first 
   end
 
   # 文字に割り当てるビット列を求める
@@ -81,6 +81,7 @@ class HuffmanEncoder
     dfs(node.right, binary_values, binary_string.dup << "1")
   end
 
+  # 符合化された文字列を生成
   def generate_encoded_string(message, binary_values)
     encoded_string = ""
     message.each_char do |char|
@@ -91,7 +92,7 @@ class HuffmanEncoder
 
 end
 
-if __FILE__ == "lib/huffman.rb"
+if __FILE__ == "lib/huffman_encoder.rb"
   encoder = HuffmanEncoder.new("aaaaabbbcd", debug=true)
   p encoder.binary_values
   p encoder.encoded_string
